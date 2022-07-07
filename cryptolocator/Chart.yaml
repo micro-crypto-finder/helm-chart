@@ -1,0 +1,7 @@
+apiVersion: v2
+name: microcryptofinder-cryptolocator
+description: CryptoLocator tries to figure the correct price of BTC for a given currency.
+
+type: application
+version: 0.0.1
+appVersion: 0.0.1-SNAPSHOT
