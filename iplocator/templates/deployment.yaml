@@ -34,33 +34,23 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
-              value: "health,info"
-            - name: CACHE_CONFIG_POOL_HEAP
-              value: "true"
-            - name: CACHE_CONFIG_POOL_SIZE
-              value: "10000"
-            - name: CACHE_CONFIG_POOL_TTL_IN_SEC
-              value: "600"
-            - name: FEIGN_CLIENT_IP_API_FIELDS
-              value: "status,message,countryCode,currency"
-            - name: FEIGN_CLIENT_IP_API_FALLBACK_CURRENCY
-              value: "EUR"
-            - name: LOG_GENERAL_LEVEL
-              value: "info"
+          {{- range $key, $val := .Values.containers.env }}
+            - name: {{ $key }}
+              value: {{ $val | quote }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.appPort }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /actuator/health/liveness
+              path: {{ .Values.containers.livenessProbe }}
               port: {{ .Values.service.appPort }}
             initialDelaySeconds: 3
             periodSeconds: 10
           readinessProbe:
             httpGet:
-              path: /actuator/health/readiness
+              path: {{ .Values.containers.readinessProbe }}
               port: {{ .Values.service.appPort }}
             initialDelaySeconds: 3
             periodSeconds: 10
