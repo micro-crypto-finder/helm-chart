@@ -1,0 +1,7 @@
+apiVersion: v2
+name: microcryptofinder-gateway
+description: Simple UI to return BTC price according to a currency (via IP).
+
+type: application
+version: 0.0.1
+appVersion: 0.0.1-SNAPSHOT

@@ -3,7 +3,7 @@ entries:
   microcryptofinder-cryptolocator:
   - apiVersion: v2
     appVersion: 0.0.1-SNAPSHOT
-    created: "2022-07-07T17:12:28.53171+02:00"
+    created: "2022-07-07T17:50:22.105321+02:00"
     description: CryptoLocator tries to figure the correct price of BTC for a given
       currency.
     digest: 42c7c9533e0b819adcce7d5c6c4f09a77e66fa43a1ab70edf1b1e821aea72b9f
@@ -12,10 +12,21 @@ entries:
     urls:
     - https://micro-crypto-finder.github.io/helm-chart/microcryptofinder-cryptolocator-0.0.1.tgz
     version: 0.0.1
+  microcryptofinder-gateway:
+  - apiVersion: v2
+    appVersion: 0.0.1-SNAPSHOT
+    created: "2022-07-07T17:50:22.105866+02:00"
+    description: Simple UI to return BTC price according to a currency (via IP).
+    digest: e44c2f04c03c4e506defaed6fb86872fd13b6b4b9577d6e1294ddb563180b8a5
+    name: microcryptofinder-gateway
+    type: application
+    urls:
+    - https://micro-crypto-finder.github.io/helm-chart/microcryptofinder-gateway-0.0.1.tgz
+    version: 0.0.1
   microcryptofinder-iplocator:
   - apiVersion: v2
     appVersion: 0.0.1-SNAPSHOT
-    created: "2022-07-07T17:12:28.532193+02:00"
+    created: "2022-07-07T17:50:22.10635+02:00"
     description: IpLocator tries to figure the correct location given an IP.
     digest: da9142d539b88121090d615ddaab2c5e00faec8daa6c18c84f7e0a3ff831ecea
     name: microcryptofinder-iplocator
@@ -23,4 +34,4 @@ entries:
     urls:
     - https://micro-crypto-finder.github.io/helm-chart/microcryptofinder-iplocator-0.0.1.tgz
     version: 0.0.1
-generated: "2022-07-07T17:12:28.530966+02:00"
+generated: "2022-07-07T17:50:22.104599+02:00"
