@@ -1,0 +1,12 @@
+dependencies:
+- name: ingress-nginx
+  repository: https://kubernetes.github.io/ingress-nginx
+  version: 4.1.4
+- name: microcryptofinder-iplocator
+  repository: https://micro-crypto-finder.github.io/helm-chart
+  version: 0.0.1
+- name: microcryptofinder-cryptolocator
+  repository: https://micro-crypto-finder.github.io/helm-chart
+  version: 0.0.1
+digest: sha256:9fa17ffca3d2e76da23e51da90d1c513da538f0cf88990d90b73704403b0f136
+generated: "2022-07-07T18:07:35.690743+02:00"

@@ -96,6 +96,11 @@ Create package for each service:
 
 Then create/update `index.yaml` by running `helm repo index --url https://micro-crypto-finder.github.io/helm-chart/ .`.
 
+### Install Gateway with all dependencies
+
+1. `helm dep update ./gateway` to download/update all chart dependencies.
+2. `helm install gateway ./gateway` will install this chart and all its dependencies.
+
 ### Install from source:
 
 1. `helm install iplocator ./iplocator`
@@ -107,3 +112,9 @@ Then create/update `index.yaml` by running `helm repo index --url https://micro-
 1. `helm install iplocator ./iplocator`
 2. `helm install cryptolocator ./cryptolocator`
 3. `helm install gateway ./gateway`
+
+### Uninstall charts
+
+1. `helm uninstall iplocator`
+2. `helm uninstall cryptolocator`
+3. `helm uninstall gateway`
