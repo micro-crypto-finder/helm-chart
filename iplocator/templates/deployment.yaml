@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "micro-crypto-finder.fullname" . }}
+  name: {{ include "chart.fullname" . }}
   labels:
-    {{- include "micro-crypto-finder.labels" . | nindent 4 }}
+    {{- include "chart.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "micro-crypto-finder.selectorLabels" . | nindent 6 }}
+      {{- include "chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "micro-crypto-finder.selectorLabels" . | nindent 8 }}
+        {{- include "chart.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "micro-crypto-finder.serviceAccountName" . }}
+      serviceAccountName: {{ include "chart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -33,18 +33,37 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              value: "health,info"
+            - name: CACHE_CONFIG_POOL_HEAP
+              value: "true"
+            - name: CACHE_CONFIG_POOL_SIZE
+              value: "10000"
+            - name: CACHE_CONFIG_POOL_TTL_IN_SEC
+              value: "600"
+            - name: FEIGN_CLIENT_IP_API_FIELDS
+              value: "status,message,countryCode,currency"
+            - name: FEIGN_CLIENT_IP_API_FALLBACK_CURRENCY
+              value: "EUR"
+            - name: LOG_GENERAL_LEVEL
+              value: "info"
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.service.appPort }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /actuator/health/liveness
+              port: {{ .Values.service.appPort }}
+            initialDelaySeconds: 3
+            periodSeconds: 10
           readinessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /actuator/health/readiness
+              port: {{ .Values.service.appPort }}
+            initialDelaySeconds: 3
+            periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
