@@ -99,7 +99,9 @@ Then create/update `index.yaml` by running `helm repo index --url https://micro-
 ### Install Gateway with all dependencies
 
 1. `helm dep update ./gateway` to download/update all chart dependencies.
-2. `helm install gateway ./gateway` will install this chart and all its dependencies.
+2. `helm install microcryptofinder ./gateway` will install this chart and all its dependencies.
+
+Or directly from repository: `helm install microcryptofinder https://micro-crypto-finder.github.io/helm-chart/microcryptofinder-gateway-0.0.1.tgz`
 
 ### Install from source:
 
