@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  microcryptofinder-iplocator:
+  - apiVersion: v2
+    appVersion: 0.0.1-SNAPSHOT
+    created: "2022-07-07T16:01:31.220867+02:00"
+    description: IpLocator tries to figure the correct location given an IP.
+    digest: da9142d539b88121090d615ddaab2c5e00faec8daa6c18c84f7e0a3ff831ecea
+    name: microcryptofinder-iplocator
+    type: application
+    urls:
+    - https://micro-crypto-finder.github.io/helm-chart/microcryptofinder-iplocator-0.0.1.tgz
+    version: 0.0.1
+generated: "2022-07-07T16:01:31.217413+02:00"
